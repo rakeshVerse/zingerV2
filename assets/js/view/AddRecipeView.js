@@ -21,8 +21,7 @@ class AddRecipeView extends View {
   }
 
   #openAddRecipePopup() {
-    this.#openPopupBtn.addEventListener('click', e => {
-      e.preventDefault();
+    this.#openPopupBtn.addEventListener('click', () => {
       // this.clearFormInputs(this.#addRecipeForm);
       this.#popupInfo.classList.add('hidden-info');
       this.#addRecipeSubmitBtn.disabled = false;
@@ -31,8 +30,7 @@ class AddRecipeView extends View {
   }
 
   #closeAddRecipePopup() {
-    this.#closePopupBtn.addEventListener('click', e => {
-      e.preventDefault();
+    this.#closePopupBtn.addEventListener('click', () => {
       this.#togglePopup();
     });
   }

@@ -398,7 +398,7 @@ const renderRecipeList = (
  */
 const searchRecipe = async keyword => {
   try {
-    // Initaially hide pagination buttons
+    // Initially hide pagination buttons
     paginationBtnPrev.classList.add('hidden');
     paginationBtnNext.classList.add('hidden');
 
