@@ -1,12 +1,19 @@
-class SearchRecipesView {
-  #searchForm = document.getElementById('search-form');
+import View from './View.js';
+
+class SearchRecipesView extends View {
+  _form = document.getElementById('search-form');
+  #recipeSearchInput = document.getElementById('search-keyword');
+
+  constructor() {
+    super();
+    this.#recipeSearchInput.value = '';
+  }
 
   bindSearchRecipes(handler) {
-    this.#searchForm.addEventListener('submit', function (e) {
+    this._form.addEventListener('submit', e => {
       e.preventDefault();
 
-      const data = new FormData(this);
-      const keyword = data.get('search-keyword').trim();
+      const keyword = this.#recipeSearchInput.value.trim();
       if (keyword === '') return;
 
       handler(keyword);

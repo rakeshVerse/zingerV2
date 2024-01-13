@@ -48,6 +48,8 @@ class Controller {
       this.#recipePreviewView.renderRecipeList(this.#model.getSearchResults());
 
       this.#paginationView.renderInitailPaginationBtn(this.#model.recipeSearchResults.totalRecipes);
+
+      this.#searchRecipesView.clearFormInputs();
     } catch (error) {
       console.log(error);
       this.#recipePreviewView.displayError(error);

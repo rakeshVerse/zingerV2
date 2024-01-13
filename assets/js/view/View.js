@@ -1,6 +1,6 @@
 export default class View {
-  clearFormInputs(form) {
-    form.querySelectorAll('input').forEach(inp => (inp.value = ''));
+  clearFormInputs() {
+    this._form.querySelectorAll('input').forEach(inp => (inp.value = ''));
   }
 
   /**

@@ -7,7 +7,7 @@ class AddRecipeView extends View {
   #closePopupBtn = document.querySelector('.btn-close-popup');
   #popupInfo = document.querySelector('#popup .popup-info');
   #addRecipeSubmitBtn = document.querySelector('#popup .btn-submit-recipe');
-  #addRecipeForm = document.getElementById('add-recipe');
+  _form = document.getElementById('add-recipe');
 
   constructor() {
     super();
@@ -22,7 +22,7 @@ class AddRecipeView extends View {
 
   #openAddRecipePopup() {
     this.#openPopupBtn.addEventListener('click', () => {
-      // this.clearFormInputs(this.#addRecipeForm);
+      // this.clearFormInputs(this._form);
       this.#popupInfo.classList.add('hidden-info');
       this.#addRecipeSubmitBtn.disabled = false;
       this.#togglePopup();
