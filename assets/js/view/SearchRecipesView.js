@@ -14,7 +14,7 @@ class SearchRecipesView extends View {
     this.#recipeSearchInput.value = '';
 
     // when search input loses focus, hide typehead
-    this.#recipeSearchInput.addEventListener('blur', e => this.#hideTypehead);
+    this.#recipeSearchInput.addEventListener('blur', e => this.#hideTypehead());
   }
 
   bindSearchRecipes(handler) {
