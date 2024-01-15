@@ -25,6 +25,8 @@ class Controller {
     this.#headerView.bindPersistTheme(this.handlePersistTheme);
     this.#searchRecipesView.bindSearchRecipes(this.handleSearchRecipes);
     this.#paginationView.bindPagination(this.handlePagination);
+    this.#searchRecipesView.bindTypehead(this.handleTypehead);
+    this.#searchRecipesView.bindTypeheadClick(this.handleTypeheadClick);
   }
 
   // SUBSCRIBERS
@@ -48,7 +50,7 @@ class Controller {
 
       this.#recipePreviewView.renderRecipeList(this.#model.getSearchResults());
 
-      this.#paginationView.renderInitailPaginationBtn(this.#model.recipeSearchResults.totalRecipes);
+      this.#paginationView.renderInitailPaginationBtn(this.#model.state.totalRecipes);
 
       this.#searchRecipesView.clearFormInputs();
     } catch (error) {
@@ -58,9 +60,15 @@ class Controller {
   };
 
   handlePagination = (startIndex, endIndex) => {
-    this.#recipePreviewView.renderRecipeList(
-      this.#model.recipeSearchResults.recipes.slice(startIndex, endIndex)
-    );
+    this.#recipePreviewView.renderRecipeList(this.#model.state.recipes.slice(startIndex, endIndex));
+  };
+
+  handleTypehead = () => {
+    this.#searchRecipesView.searchKeyword(this.#model.state.allowedSearchKeywords);
+  };
+
+  handleTypeheadClick = keyword => {
+    this.handleSearchRecipes(keyword);
   };
 }
 
