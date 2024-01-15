@@ -24,6 +24,7 @@ class Controller {
     this.#headerView.bindChangeTheme(this.handleChangeTheme);
     this.#headerView.bindPersistTheme(this.handlePersistTheme);
     this.#searchRecipesView.bindSearchRecipes(this.handleSearchRecipes);
+    this.#paginationView.bindPagination(this.handlePagination);
   }
 
   // SUBSCRIBERS
@@ -54,6 +55,12 @@ class Controller {
       console.log(error);
       this.#recipePreviewView.displayError(error);
     }
+  };
+
+  handlePagination = (startIndex, endIndex) => {
+    this.#recipePreviewView.renderRecipeList(
+      this.#model.recipeSearchResults.recipes.slice(startIndex, endIndex)
+    );
   };
 }
 
