@@ -27,6 +27,8 @@ class PaginationView {
 
   bindPagination(handler) {
     this.#paginationContainer.addEventListener('click', e => {
+      e.preventDefault();
+
       // Guard clause
       if (e.target === this.#paginationContainer) return;
 

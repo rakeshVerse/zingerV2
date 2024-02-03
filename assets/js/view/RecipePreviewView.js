@@ -3,6 +3,7 @@ import View from './View';
 class RecipePreviewView extends View {
   #recipePreviewContainer = document.querySelector('.recipe-preview-list');
   _msgContainer = document.querySelector('.preview-info');
+  #commonPreviewContainer = document.querySelectorAll('.recipe-list');
 
   displayError(error) {
     this.showInfo(undefined, error.message, 'danger');
@@ -21,7 +22,7 @@ class RecipePreviewView extends View {
     const { id, image_url, title, publisher, key } = recipe;
 
     return `<li class="recipe-item hightlight-hover ${className}" data-id="${id}">
-              <a href="#" class="recipe-preview-link">
+              <a href="#${id}" class="recipe-preview-link">
                 <img
                   class="preview-img"
                   src="${image_url}"
@@ -50,11 +51,14 @@ class RecipePreviewView extends View {
     infoContainer.classList.add('hidden-info');
     listContainer.textContent = '';
     listContainer.insertAdjacentHTML('afterbegin', html);
+  }
 
-    // Highlight recipe item
-    // 1. Saved recipes view: When page loads with recipeId
-    // 2. Recipe preview view: When user searches or click on pagination button
-    // if (recipeId) highlightItem(recipeId);
+  highlightItem(recipeId) {
+    document.querySelectorAll('.recipe-item').forEach(item => {
+      const classList = item.classList;
+
+      item.dataset.id === recipeId ? classList.add('highlight') : classList.remove('highlight');
+    });
   }
 }
 

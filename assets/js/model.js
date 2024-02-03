@@ -5,6 +5,8 @@ class Model {
   constructor() {
     this.state = {
       recipes: [],
+      savedRecipes: [],
+      recipe: {},
       allowedSearchKeywords: [
         'vegan',
         'buttermilk',
@@ -178,6 +180,19 @@ class Model {
     return this.state.totalRecipes > RECIPE_ITEMS_PER_PAGE
       ? this.state.recipes.slice(0, RECIPE_ITEMS_PER_PAGE)
       : this.state.recipes;
+  }
+
+  async loadRecipe(id) {
+    try {
+      const jsonData = await AJAX(`${FORKIFY_API_URL}/${id}?key=${FORKIFY_API_KEY}`);
+      this.state.recipe = jsonData.data.recipe;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  isSavedRecipe() {
+    return !this.state.savedRecipes.every(recipe => recipe.id !== this.state.recipe.id);
   }
 }
 
